@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.LinkedQueue;
  * @version 1.0
  * @since 2021/1/5
  */
-public class SequentialSearchST<Key, Value> {
+public class SequentialSearchST<Key, Value> implements ST<Key, Value> {
 
     private int n;
 
@@ -27,19 +27,23 @@ public class SequentialSearchST<Key, Value> {
         }
     }
 
+    @Override
     public int size() {
         return n;
     }
 
+    @Override
     public boolean isEmpty() {
         return size() == 0;
     }
 
+    @Override
     public boolean containsKey(Key k) {
         if (null == k) throw new IllegalArgumentException("key must not null");
         return get(k) != null;
     }
 
+    @Override
     public Value get(Key k) {
         if (null == k) throw new IllegalArgumentException("key must not null");
         //  first 可能为空
@@ -51,6 +55,7 @@ public class SequentialSearchST<Key, Value> {
         return null;
     }
 
+    @Override
     public void put(Key k, Value v) {
         // 为什么我插入数据的时候老想着从后面插入呢，囧
         if (null == k) throw new IllegalArgumentException("key must not null");
@@ -69,6 +74,7 @@ public class SequentialSearchST<Key, Value> {
         n++;
     }
 
+    @Override
     public void delete(Key k) {
         if (null == k) throw new IllegalArgumentException("key must not null");
         first = delete(first, k);
@@ -85,6 +91,7 @@ public class SequentialSearchST<Key, Value> {
     }
 
 
+    @Override
     public Iterable<Key> keys() {
         LinkedQueue<Key> keysQ = new LinkedQueue<>();
         for (Node x = first; x != null; x = x.next) {
